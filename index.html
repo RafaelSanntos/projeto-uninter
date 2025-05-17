@@ -1,0 +1,456 @@
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vida Plus - Sistema de Gestão Hospitalar</title>
+
+    <link href="assets/img/logo.png" rel="icon">
+    <link href="assets/img/logo.png" rel="apple-touch-icon">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
+    <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+    <link href="assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+    <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #fff;
+            color: #000;
+            line-height: 1.6;
+        }
+        /* Navbar */
+        .navbar {
+            background: #38b6ff;
+            padding: 1rem 0;
+        }
+        .navbar-brand {
+            font-weight: 600;
+            font-size: 1.75rem;
+            color: #fff !important;
+        }
+        .navbar-toggler {
+            border: none;
+        }
+        .navbar-toggler-icon {
+            background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3e%3cpath stroke='rgba(255, 255, 255, 0.75)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+        }
+        .navbar-nav .nav-link {
+            color: rgba(255, 255, 255, 0.8);
+            padding: 0.7rem 1.2rem;
+            transition: color 0.3s ease;
+        }
+        .navbar-nav .nav-link:hover,
+        .navbar-nav .nav-link.active {
+            color: #fff;
+        }
+        .navbar-nav .nav-item:last-child .nav-link {
+            color: #dc3545;
+        }
+        .navbar-nav .nav-item:last-child .nav-link:hover {
+            color: #c82333;
+        }
+
+        /* Hero Section */
+        .hero-patient {
+            background-image: url('assets/img/fundo.png');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 150px 0;
+            text-align: center;
+            position: relative;
+        }
+        .hero-patient::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            z-index: 1;
+        }
+        .hero-patient .container {
+            position: relative;
+            z-index: 2;
+        }
+        .hero-patient h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+        .hero-patient p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            color: rgba(255, 255, 255, 0.9);
+        }
+        .hero-patient .btn-primary {
+            background-color: #0d6efd;
+            border: none;
+            padding: 12px 30px;
+            font-size: 1.1rem;
+            border-radius: 0.5rem;
+            transition: background-color 0.3s ease;
+        }
+        .hero-patient .btn-primary:hover {
+            background-color: #38b6ff;
+        }
+
+        /* Sections General */
+        section {
+            padding: 60px 0;
+        }
+        section h2 {
+            font-weight: 600;
+            margin-bottom: 40px;
+            color: #38b6ff;
+            text-align: center;
+        }
+
+        /* Sobre Section */
+        #sobre .row {
+            align-items: center;
+        }
+        #sobre p {
+            font-size: 1.1rem;
+            color: #555;
+        }
+
+        /* Especialidades Section */
+        #especialidades .card {
+            border: none;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            margin-bottom: 30px;
+        }
+        #especialidades .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+        }
+        #especialidades .card-body {
+            padding: 25px;
+        }
+        #especialidades .card-title {
+            font-weight: 500;
+            color: #38b6ff;
+            margin-bottom: 15px;
+        }
+        #especialidades .card-text {
+            color: #777;
+        }
+
+        /* Equipe Médica Section */
+        #medicos .doctor-card {
+            border: none;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            margin-bottom: 30px;
+        }
+        #medicos .doctor-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+        }
+        #medicos .doctor-card img {
+            border-top-left-radius: 0.75rem;
+            border-top-right-radius: 0.75rem;
+            width: 100%;
+            display: block;
+        }
+        #medicos .doctor-card .card-body {
+            padding: 20px;
+            text-align: center;
+        }
+        #medicos .doctor-card .card-title {
+            font-weight: 500;
+            color: #38b6ff;
+            margin-bottom: 5px;
+        }
+        #medicos .doctor-card .card-subtitle {
+            color: #777;
+            font-size: 0.9rem;
+        }
+
+        /* Infraestrutura Section */
+        #infra .row > * {
+            padding-left: 15px;
+            padding-right: 15px;
+        }
+        #infra .infra-item {
+            margin-bottom: 30px;
+        }
+        #infra .infra-item img {
+            width: 100%;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease-in-out;
+        }
+        #infra .infra-item img:hover {
+            transform: scale(1.05);
+        }
+
+        /* Footer */
+        footer {
+            background: #38b6ff;
+            color: #fff;
+            padding: 20px 0;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+        footer p {
+            margin: 5px 0;
+        }
+
+        /* Media Queries para Responsividade */
+        @media (max-width: 992px) {
+            .navbar-nav {
+                text-align: center;
+            }
+            .hero-patient h1 {
+                font-size: 2.5rem;
+            }
+            .hero-patient p {
+                font-size: 1.1rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-patient {
+                padding: 80px 0;
+            }
+            .hero-patient h1 {
+                font-size: 2rem;
+            }
+            #sobre .col-md-6:last-child {
+                margin-top: 30px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark shadow-sm">
+        <div class="container">
+            <a class="navbar-brand" href="index.html"><i class="bi bi-heart-pulse-fill me-2"></i>VidaPlus</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav gap-lg-3">
+                    <li class="nav-item"><a href="#inicio" class="nav-link active">Início</a></li>
+                    <li class="nav-item"><a href="#sobre" class="nav-link">Sobre</a></li>
+                    <li class="nav-item"><a href="#especialidades" class="nav-link">Especialidades</a></li>
+                    <li class="nav-item"><a href="medico.html" class="nav-link">Equipe médica</a></li>
+                    <li class="nav-item"><a href="#infra" class="nav-link">Infraestrutura</a></li>
+                    <li class="nav-item"><a href="contact.html" class="nav-link">Contato</a></li>
+                    <li class="nav-item"><a class="nav-link" href="login.html"><i class="bi-box-arrow-right"></i> Sair</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main class="main">
+        <section id="inicio" class="hero-patient">
+            <div class="container">
+                <h1>Bem-vindo ao Vida Plus</h1>
+                <p>Seu parceiro em gestão hospitalar eficiente e inovadora.</p>
+                <a href="#sobre" class="btn btn-primary">Saiba Mais</a>
+            </div>
+        </section>
+
+        <section id="sobre">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6" data-aos="fade-right">
+                        <img src="assets/img/sobre.png" alt="Sobre o VidaPlus" class="img-fluid rounded shadow-sm">
+                    </div>
+                    <div class="col-md-6" data-aos="fade-left">
+                        <h2>Sobre Nós</h2>
+                        <p>O VidaPlus é um sistema de gestão hospitalar completo e intuitivo, desenvolvido para otimizar processos, melhorar a eficiência e proporcionar um atendimento de excelência aos pacientes.</p>
+                        <p>Nossa missão é oferecer soluções tecnológicas inovadoras que facilitem o dia a dia de hospitais e clínicas, permitindo que os profissionais de saúde foquem no que realmente importa: o bem-estar dos pacientes.</p>
+                        <p>Com o VidaPlus, você terá acesso a ferramentas poderosas para gerenciar prontuários eletrônicos, agendamentos, estoque de medicamentos, finanças e muito mais, tudo em um só lugar.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="especialidades" class="bg-light py-5">
+            <div class="container">
+                <h2 data-aos="fade-up">Nossas Especialidades</h2>
+                <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+                    <div class="col" data-aos="fade-up" data-aos-delay="100">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h5 class="card-title"><i class="fas fa-stethoscope me-2"></i> Clínica Médica</h5>
+                                <p class="card-text">Consultas, diagnósticos e tratamentos para diversas condições de saúde.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col" data-aos="fade-up" data-aos-delay="200">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h5 class="card-title"><i class="fas fa-heartbeat me-2"></i> Cardiologia</h5>
+                                <p class="card-text">Cuidados especializados para a saúde do seu coração.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col" data-aos="fade-up" data-aos-delay="300">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h5 class="card-title"><i class="fas fa-brain me-2"></i> Neurologia</h5>
+                                <p class="card-text">Diagnóstico e tratamento de doenças do sistema nervoso.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col" data-aos="fade-up" data-aos-delay="400">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h5 class="card-title"><i class="fas fa-bone me-2"></i> Ortopedia</h5>
+                                <p class="card-text">Tratamento de lesões e doenças dos ossos, músculos e articulações.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col" data-aos="fade-up" data-aos-delay="500">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h5 class="card-title"><i class="fas fa-lungs me-2"></i> Pneumologia</h5>
+                                <p class="card-text">Cuidados com a saúde respiratória e tratamento de doenças pulmonares.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col" data-aos="fade-up" data-aos-delay="600">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h5 class="card-title"><i class="fas fa-eye me-2"></i> Oftalmologia</h5>
+                                <p class="card-text">Exames, diagnóstico e tratamento de problemas de visão.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="medicos" class="py-5">
+            <div class="container">
+                <h2 data-aos="fade-up">Nossa Equipe Médica</h2>
+                <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+                    <div class="col" data-aos="fade-up" data-aos-delay="100">
+                        <div class="doctor-card">
+                            <img src="assets/img/med/med.jpg" alt="Dr. João Silva" class="img-fluid">
+                            <div class="card-body">
+                                <h5 class="card-title">Dr. João Silva</h5>
+                                <h6 class="card-subtitle mb-2 text-muted">Clínico Geral</h6>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col" data-aos="fade-up" data-aos-delay="200">
+                        <div class="doctor-card">
+                            <img src="assets/img/med/med2.jpg" alt="Dra. Maria Oliveira" class="img-fluid">
+                            <div class="card-body">
+                                <h5 class="card-title">Dra. Maria Oliveira</h5>
+                                <h6 class="card-subtitle mb-2 text-muted">Cardiologista</h6>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col" data-aos="fade-up" data-aos-delay="300">
+                        <div class="doctor-card">
+                            <img src="assets/img/med/med3.jpg" alt="Dr. Pedro Almeida" class="img-fluid">
+                            <div class="card-body">
+                                <h5 class="card-title">Dr. Pedro Almeida</h5>
+                                <h6 class="card-subtitle mb-2 text-muted">Neurologista</h6>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col" data-aos="fade-up" data-aos-delay="400">
+                        <div class="doctor-card">
+                            <img src="assets/img/med/med4.jpg" alt="Dra. Ana Souza" class="img-fluid">
+                            <div class="card-body">
+                                <h5 class="card-title">Dra. Ana Souza</h5>
+                                <h6 class="card-subtitle mb-2 text-muted">Ortopedista</h6>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col" data-aos="fade-up" data-aos-delay="500">
+                        <div class="doctor-card">
+                            <img src="assets/img/med/med5.jpg" alt="Dr. Carlos Rocha" class="img-fluid">
+                            <div class="card-body">
+                                <h5 class="card-title">Dr. Carlos Rocha</h5>
+                                <h6 class="card-subtitle mb-2 text-muted">Pneumologista</h6>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col" data-aos="fade-up" data-aos-delay="600">
+                        <div class="doctor-card">
+                            <img src="assets/img/med/med6.jpg" alt="Dra. Laura Mendes" class="img-fluid">
+                            <div class="card-body">
+                                <h5 class="card-title">Dra. Laura Mendes</h5>
+                                <h6 class="card-subtitle mb-2 text-muted">Oftalmologista</h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="infra" class="bg-light py-5">
+            <div class="container">
+                <h2 data-aos="fade-up">Nossa Infraestrutura</h2>
+                <div class="row">
+                    <div class="col-md-4 infra-item" data-aos="fade-up" data-aos-delay="100">
+                        <img src="assets/img/recepcao.jpg" alt="Recepção Moderna" class="img-fluid">
+                        <p class="mt-2 text-center">Recepção Moderna e Acolhedora</p>
+                    </div>
+                    <div class="col-md-4 infra-item" data-aos="fade-up" data-aos-delay="200">
+                        <img src="assets/img/equipamento.jpg" alt="Salas de Exame Equipadas" class="img-fluid">
+                        <p class="mt-2 text-center">Salas de Exame com Tecnologia de Ponta</p>
+                    </div>
+                    <div class="col-md-4 infra-item" data-aos="fade-up" data-aos-delay="300">
+                        <img src="assets/img/quarto.jpg" alt="Quartos Confortáveis" class="img-fluid">
+                        <p class="mt-2 text-center">Quartos Individuais e Confortáveis</p>
+                    </div>
+                    <div class="col-md-6 infra-item" data-aos="fade-up" data-aos-delay="400">
+                        <img src="assets/img/centrocirurgico.jpg" alt="Centro Cirúrgico Avançado" class="img-fluid">
+                        <p class="mt-2 text-center">Centro Cirúrgico com Equipamentos Avançados</p>
+                    </div>
+                    <div class="col-md-6 infra-item" data-aos="fade-up" data-aos-delay="500">
+                        <img src="assets/img/lab.jpg" alt="Laboratório de Análises Clínicas" class="img-fluid">
+                        <p class="mt-2 text-center">Laboratório Completo para Análises Clínicas</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="text-light py-4 text-center">
+        <div class="container">
+            <p>Rafael Antonio Silva dos Santos – RU: 4332113</p>
+            <p>© VidaPlus - Sistema de Gestão Hospitalar</p>
+        </div>
+    </footer>
+
+    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/vendor/aos/aos.js"></script>
+    <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+    <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script>
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true
+        });
+
+        const galleryLightbox = GLightbox({
+            selector: '.infra-item a'
+        });
+    </script>
+</body>
+</html>
+

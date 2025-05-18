@@ -35,3 +35,64 @@ Este sistema faz parte do portfólio **VidaPlus** e demonstra a aplicação de c
 ---
 
 ## 🚀 Como Executar Localmente
+
+1. **Clone o repositório:**
+
+```bash
+git clone https://github.com/RafaelSanntos/projeto-uninter.git
+```
+
+2. **Acesse a pasta do projeto:**
+
+```bash
+cd projeto-uninter
+```
+
+3. **Abra o projeto no seu navegador:**
+
+Você pode abrir diretamente o arquivo `index.html` ou usar um servidor local para melhor funcionamento.
+
+Por exemplo, com o [Live Server](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer) no VSCode ou:
+
+```bash
+# Se tiver Python instalado, rode:
+python -m http.server
+# Depois acesse http://localhost:8000 no navegador
+```
+
+4. **Acesse a página dos pacientes:**
+
+Abra no navegador o link:
+
+```
+https://rafaelsanntos.github.io/projeto-uninter/paciente.html
+```
+
+---
+
+## ⚙️ Como Rodar os Testes Cypress
+
+1. Certifique-se de ter o Node.js instalado.
+
+2. No terminal, instale as dependências (caso ainda não tenha feito):
+
+```bash
+npm install
+```
+
+3. Para abrir a interface do Cypress:
+
+```bash
+npx cypress open
+```
+
+4. Na interface que abrir, escolha o teste para rodar.
+
+---
+
+## 🔗 Link Online
+
+Acesse a versão online do projeto aqui:
+
+[https://rafaelsanntos.github.io/projeto-uninter/](https://rafaelsanntos.github.io/projeto-uninter/)
+

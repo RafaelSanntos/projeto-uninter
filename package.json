@@ -1,0 +1,24 @@
+{
+  "name": "vidaplus_rafael_santos",
+  "version": "1.0.0",
+  "description": "**Projeto: SGHSS – Sistema de Gestão Hospitalar e de Serviços de Saúde** **Rafael Antonio Silva dos Santos – RU: 4332113**",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RafaelSanntos/projeto-uninter.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/RafaelSanntos/projeto-uninter/issues"
+  },
+  "homepage": "https://github.com/RafaelSanntos/projeto-uninter#readme",
+  "devDependencies": {
+    "cypress": "^14.3.3"
+  }
+}

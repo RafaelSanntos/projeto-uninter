@@ -63,6 +63,7 @@
     }
   </style>
 </head>
+<!-- MARIA FERNANDA SILVA LIRA - RU: 4372306 - VidaPlus - Sistema de Gestão Hospitalar-->
 <body>
 
   <div class="main-wrapper" data-aos="zoom-in">
@@ -81,12 +82,12 @@
         <h4 class="mb-3"><i class="bi bi-box-arrow-in-right me-2"></i>Acesse sua conta</h4>
         <form id="loginForm">
           <div class="mb-3">
-            <label for="login_campo" class="form-label">Usuário ou Email:</label>
-            <input type="text" class="form-control" id="login_campo" required>
+            <label for="loginUser" class="form-label">Usuário ou Email:</label>
+            <input type="text" class="form-control" id="loginUser" required>
           </div>
           <div class="mb-3">
-            <label for="senha_campo" class="form-label">Senha:</label>
-            <input type="password" class="form-control" id="senha_campo" required>
+            <label for="loginPassword" class="form-label">Senha:</label>
+            <input type="password" class="form-control" id="loginPassword" required>
           </div>
           <button type="submit" class="btn btn-primary">Entrar</button>
           <div id="loginError" class="alert alert-danger mt-3 d-none">Usuário ou senha inválidos.</div>
@@ -129,9 +130,6 @@
   <!-- Scripts -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
-  <script>
-    AOS.init();
-  </script>
   <script src="assets/js/script.js"></script>
 </body>
 </html>

@@ -24,8 +24,8 @@ document.addEventListener('DOMContentLoaded', function () {
         event.preventDefault(); // Previne o envio padrão do formulário
         console.log("Formulário de login enviado!");
 
-        const loginInput = document.getElementById('login_campo').value.trim();
-        const senhaInput = document.getElementById('senha_campo').value.trim();
+        const loginInput = document.getElementById('loginUser').value.trim();
+        const senhaInput = document.getElementById('loginPassword').value.trim();
 
         console.log("Tentativa de login:", loginInput, senhaInput);
 
@@ -36,7 +36,8 @@ document.addEventListener('DOMContentLoaded', function () {
             loginError.style.display = 'none'; // Esconde a mensagem de erro
             console.log(`Login bem-sucedido como ${usuarioValido.role}! Redirecionando...`);
 
-            // Redirecionamento com base no papel do usuário
+            // Adicionando um log antes do redirecionamento
+            console.log("Redirecionando para a página...");
             switch (usuarioValido.role) {
                 case 'administrador':
                     window.location.href = 'admin.html';
@@ -47,7 +48,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     break;
                 case 'paciente':
                     window.location.href = 'pacientes.html';
-                    break;
+                    break; // Este é o único 'default' na estrutura switch
                 default:
                     console.error("Erro: Papel de usuário desconhecido.");
             }

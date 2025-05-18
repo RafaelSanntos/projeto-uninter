@@ -1,61 +1,113 @@
-document.addEventListener('DOMContentLoaded', function () {
-    console.log("Script carregado!");
+document.addEventListener("DOMContentLoaded", function () {
+  console.log("Script carregado!");
 
-    const loginForm = document.getElementById('loginForm');
-    const loginError = document.getElementById('loginError');
+  /* ===== LOGIN ===== */
+  const loginForm = document.getElementById("loginForm");
+  const loginError = document.getElementById("loginError");
 
-    if (!loginForm) {
-        console.error("Erro: Formulário de login não encontrado.");
-        return;
-    }
+  // Usuários predefinidos
+  const usuariosPredefinidos = [
+    { login: "pac_ester.ribeiro", senha: "paciente123", role: "paciente" },
+    { login: "enf_marcos.silva", senha: "enf123", role: "enfermeiro" },
+    { login: "med_maria.lira", senha: "medico123", role: "medico" },
+    { login: "administrador", senha: "master", role: "administrador" },
+  ];
 
-    const usuarios = [
-        { login: 'pac_ester.ribeiro', senha: 'paciente123', role: 'paciente' },
-        { login: 'enf_marcos.silva', senha: 'enf123', role: 'enfermeiro' },
-        { login: 'med_maria.lira', senha: 'medico123', role: 'medico' },
-        { login: 'administrador', senha: 'master', role: 'administrador' }
-    ];
+  // Função para obter os usuários cadastrados do localStorage
+  const obterUsuariosCadastrados = () => {
+    const usuariosCadastrados = localStorage.getItem("usuariosCadastrados");
+    return usuariosCadastrados ? JSON.parse(usuariosCadastrados) : [];
+  };
 
-    function validarUsuario(login, senha) {
-        return usuarios.find(user => user.login === login && user.senha === senha);
-    }
+  // Combina os usuários predefinidos com os cadastrados
+  const getUsuarios = () => usuariosPredefinidos.concat(obterUsuariosCadastrados());
 
-    loginForm.addEventListener('submit', function (event) {
-        event.preventDefault(); // Previne o envio padrão do formulário
-        console.log("Formulário de login enviado!");
+  function validarUsuario(login, senha) {
+    const usuarios = getUsuarios();
+    return usuarios.find((user) => user.login === login && user.senha === senha);
+  }
 
-        const loginInput = document.getElementById('loginUser').value.trim();
-        const senhaInput = document.getElementById('loginPassword').value.trim();
+  if (loginForm) {
+    loginForm.addEventListener("submit", function (event) {
+      event.preventDefault();
 
-        console.log("Tentativa de login:", loginInput, senhaInput);
+      const loginInput = document.getElementById("loginUser").value.trim();
+      const senhaInput = document.getElementById("loginPassword").value.trim();
 
-        const usuarioValido = validarUsuario(loginInput, senhaInput);
+      const usuarioValido = validarUsuario(loginInput, senhaInput);
+      if (usuarioValido) {
+        loginError.classList.add("d-none"); // Oculta a mensagem de erro
+        localStorage.setItem("usuarioLogado", JSON.stringify(usuarioValido));
 
-        if (usuarioValido) {
-            localStorage.setItem('usuarioLogado', JSON.stringify(usuarioValido));
-            loginError.style.display = 'none'; // Esconde a mensagem de erro
-            console.log(`Login bem-sucedido como ${usuarioValido.role}! Redirecionando...`);
-
-            // Adicionando um log antes do redirecionamento
-            console.log("Redirecionando para a página...");
-            switch (usuarioValido.role) {
-                case 'administrador':
-                    window.location.href = 'admin.html';
-                    break;
-                case 'medico':
-                case 'enfermeiro':
-                    window.location.href = 'profissionais.html';
-                    break;
-                case 'paciente':
-                    window.location.href = 'pacientes.html';
-                    break; // Este é o único 'default' na estrutura switch
-                default:
-                    console.error("Erro: Papel de usuário desconhecido.");
-            }
-        } else {
-            loginError.textContent = 'Usuário ou senha inválidos.';
-            loginError.style.display = 'block'; // Exibe a mensagem de erro
-            console.error("Falha no login: Usuário ou senha incorretos.");
+        // Redirecionamento conforme o papel do usuário
+        switch (usuarioValido.role) {
+          case "administrador":
+            window.location.href = "admin.html";
+            break;
+          case "medico":
+          case "enfermeiro":
+            window.location.href = "profissionais.html";
+            break;
+          case "paciente":
+            window.location.href = "pacientes.html";
+            break;
+          default:
+            console.error("Erro: Papel de usuário desconhecido.");
         }
+      } else {
+        loginError.textContent = "Usuário ou senha inválidos.";
+        loginError.classList.remove("d-none"); // Exibe a mensagem de erro
+      }
     });
+  }
+
+  /* ===== CADASTRO ===== */
+  const registerForm = document.getElementById("registerForm");
+  if (registerForm) {
+    registerForm.addEventListener("submit", function (event) {
+      event.preventDefault();
+
+      const nome = document.getElementById("registerName").value.trim();
+      const email = document.getElementById("registerEmail").value.trim();
+      const senha = document.getElementById("registerPassword").value;
+      const confirmSenha = document.getElementById("registerConfirm").value;
+
+      // Validações básicas
+      if (senha !== confirmSenha) {
+        alert("As senhas não conferem.");
+        return;
+      }
+      if (senha.length < 6) {
+        alert("A senha deve ter no mínimo 6 caracteres.");
+        return;
+      }
+
+      // Cria novo usuário (usando o email como login)
+      const novoUsuario = {
+        login: email,
+        senha: senha,
+        role: "paciente", // Papel padrão para usuários cadastrados
+        nome: nome,
+      };
+
+      // Obtém os usuários já cadastrados e verifica se o email já existe
+      const usuariosCadastrados = obterUsuariosCadastrados();
+      if (usuariosCadastrados.find((u) => u.login === novoUsuario.login)) {
+        alert("Já existe um usuário com este email.");
+        return;
+      }
+
+      // Adiciona o novo usuário e salva no localStorage
+      usuariosCadastrados.push(novoUsuario);
+      localStorage.setItem("usuariosCadastrados", JSON.stringify(usuariosCadastrados));
+
+      alert("Cadastro realizado com sucesso! Agora realize o login.");
+      registerForm.reset();
+
+      // Troca para a aba de login após o cadastro bem-sucedido
+      const loginTab = document.getElementById("login-tab");
+      const tab = new bootstrap.Tab(loginTab);
+      tab.show();
+    });
+  }
 });

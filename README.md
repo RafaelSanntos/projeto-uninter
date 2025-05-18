@@ -1,4 +1,4 @@
-# 💙 VidaPlus_MariaLira  
+# 💙 VidaPlus 
 **Projeto: SGHSS – Sistema de Gestão Hospitalar e de Serviços de Saúde**
 **Rafael Antonio Silva dos Santos – RU: 4332113**
 

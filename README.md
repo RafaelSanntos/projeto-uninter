@@ -52,29 +52,13 @@ cd projeto-uninter
 
 Você pode abrir diretamente o arquivo `index.html` ou usar um servidor local para melhor funcionamento.
 
-Por exemplo, com o [Live Server](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer) no VSCode ou:
-
-```bash
-# Se tiver Python instalado, rode:
-python -m http.server
-# Depois acesse http://localhost:8000 no navegador
-```
-
-4. **Acesse a página dos pacientes:**
-
-Abra no navegador o link:
-
-```
-https://rafaelsanntos.github.io/projeto-uninter/paciente.html
-```
-
----
+Por exemplo, com o a extensão Live Server
 
 ## ⚙️ Como Rodar os Testes Cypress
 
 1. Certifique-se de ter o Node.js instalado.
 
-2. No terminal, instale as dependências (caso ainda não tenha feito):
+2. No terminal, instale as dependências:
 
 ```bash
 npm install
@@ -86,7 +70,7 @@ npm install
 npx cypress open
 ```
 
-4. Na interface que abrir, escolha o teste para rodar.
+4. Na interface que abrir, escolha E2E Testing e selecione o teste para rodar.
 
 ---
 

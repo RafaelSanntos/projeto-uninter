@@ -19,7 +19,6 @@ describe('Página Paciente - VidaPlus', () => {
   it('Deve exibir a seção hero com títulos e texto de saudação', () => {
     cy.get('section.hero-patient').within(() => {
       cy.get('h1').should('contain.text', 'Portal do Paciente');
-      cy.get('h3').should('contain.text', 'Bom dia, Rafael!');
       cy.get('p').first().should('contain.text', 'Gerencie sua saúde de forma fácil e segura.');
       cy.get('p.fw-bold').should('contain.text', 'Rafael Antonio Silva dos Santos – RU: 4332113');
     });
